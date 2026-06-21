@@ -1,0 +1,6 @@
+{
+  "name": "Tracking dan Sewa Angkot",
+  "description": "Aplikasi pelacakan lokasi angkot manual dan sistem penyewaan angkot untuk memudahkan perjalanan komuter.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

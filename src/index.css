@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+@theme {
+  --color-popover: #ffffff;
+  --color-popover-foreground: #3E3A31;
+  --color-muted: #F4F1E8;
+  --color-muted-foreground: #8B8373;
+  --color-accent: #7A8D6E1A;
+  --color-accent-foreground: #7A8D6E;
+  --color-border: #E8E3D5;
+}
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 20 10% 22%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 10% 22%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 10% 22%;
+  --primary: 96 15% 46%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 44 26% 94%;
+  --secondary-foreground: 96 15% 46%;
+  --muted: 44 26% 94%;
+  --muted-foreground: 41 10% 50%;
+  --accent: 96 15% 46%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 44 19% 87%;
+  --input: 44 19% 87%;
+  --ring: 96 15% 46%;
+}
+
+.dark {
+  --background: 222 47% 7%;
+  --foreground: 210 40% 96%;
+  --card: 222 35% 11%;
+  --card-foreground: 210 40% 96%;
+  --popover: 222 35% 11%;
+  --popover-foreground: 210 40% 96%;
+  --secondary: 217 25% 17%;
+  --secondary-foreground: 210 40% 96%;
+  --muted: 217 25% 17%;
+  --muted-foreground: 215 20% 70%;
+  --border: 215 20% 28%;
+  --input: 215 20% 28%;
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  .animate-fade-in-down {
+    animation: fadeInDown 0.8s ease-out forwards;
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  .animate-fade-in-left {
+    animation: fadeInLeft 0.8s ease-out forwards;
+  }
+  .animate-fade-in-scale {
+    animation: fadeInScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  .animate-spin-slow {
+    animation: spin 3s linear infinite;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #7A8D6E33;
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #7A8D6E66;
+  }
+  .glass {
+    @apply bg-white/90 backdrop-blur-xl border border-white/50 shadow-2xl;
+  }
+  
+  .glass-dark {
+    @apply bg-slate-900/90 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  .flower-action {
+    @apply absolute left-2 top-2 w-12 h-12 rounded-full flex items-center justify-center border-2 border-white/90 dark:border-slate-800 shadow-xl transition-all duration-200 active:scale-90 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .flower-label {
+    @apply absolute left-full ml-2 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-[10px] font-black whitespace-nowrap shadow-lg pointer-events-none;
+  }
+
+  /* MapLibre / Custom Map Control Overrides */
+  .map-control-btn {
+    @apply bg-white text-slate-800 hover:bg-slate-50 transition-colors shadow-md;
+  }
+}
+
+/* Fix for map controls visibility */
+.maplibregl-ctrl-group {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.maplibregl-ctrl-group button {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.maplibregl-ctrl-icon {
+  filter: brightness(0.2); /* Make icons dark on light background */
+}
+
+/* Consistent high-contrast surfaces when the gadget uses dark mode. */
+.dark .app-shell header > div,
+.dark .app-shell .bg-white\/95,
+.dark .app-shell .bg-white\/90 {
+  background-color: rgb(15 23 42 / 0.96);
+  border-color: rgb(51 65 85 / 0.9);
+  color: rgb(241 245 249);
+}
+
+.dark .app-shell .text-slate-800,
+.dark .app-shell .text-slate-700,
+.dark .app-shell .text-\[\#3E3A31\] {
+  color: rgb(241 245 249);
+}
+
+.dark .app-shell .bg-\[\#FDFCF8\],
+.dark .app-shell .bg-slate-100 {
+  background-color: rgb(2 6 23);
+}
+
+.dark .maplibregl-ctrl-group {
+  background-color: rgb(15 23 42 / 0.96) !important;
+  border-color: rgb(51 65 85) !important;
+}
+
+.dark .maplibregl-ctrl-icon {
+  filter: invert(1) brightness(1.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flower-action,
+  .animate-ping,
+  .animate-spin {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
